@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import NoteButton from "./NoteButton";
 import { tunings, createSynth, playNote } from "../utils/audioUtils";
 import "../styles/bass-tuner.css";
@@ -7,10 +7,24 @@ import TunerDropdown from "./TunerDropdrown";
 const BassNotes = () => {
   const [selectedTuning, setSelectedTuning] = useState("standard");
   const [synth] = useState(createSynth());
+  const [audioEnabled, setAudioEnabled] = useState(false);
 
   const handlePlayNote = async (note) => {
     await playNote(synth, note);
   };
+
+  // ios
+  useEffect(() => {
+    const enableAudio = async () => {
+      await startAudioContext();
+      setAudioEnabled(true);
+    };
+    document.addEventListener("touchstart", enableAudio, { once: true });
+
+    return () => {
+      document.removeEventListener("touchstart", enableAudio);
+    };
+  }, []);
 
   const notes = tunings[selectedTuning];
 
