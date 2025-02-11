@@ -10,7 +10,11 @@ const tuningOptions = [
 const TunerDropdown = ({ value, onChange }) => {
   return (
     <div className="tuning-selector">
+      <label htmlFor="tuning-select" className="visually-hidden">
+        Select tuning configuration
+      </label>
       <select
+        id="tuning-select"
         value={value}
         onChange={(e) => onChange(e.target.value)}
         className="tuning-dropdown"

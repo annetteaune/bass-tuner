@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://bass-tuner-2628e.web.app/sitemap.xml
