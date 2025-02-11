@@ -5,6 +5,7 @@ const tuningOptions = [
   { value: "dropD", label: "Drop D (DADG)" },
   { value: "dropC", label: "Drop C (CGCF)" },
   { value: "BEAD", label: "BEAD Tuning" },
+  { value: "custom", label: "Custom Tuning" },
 ];
 
 const TunerDropdown = ({ value, onChange }) => {

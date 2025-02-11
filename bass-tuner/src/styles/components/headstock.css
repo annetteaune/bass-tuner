@@ -1,0 +1,28 @@
+.headstock {
+  position: relative;
+  width: 300px;
+  height: 500px;
+  margin: 1rem auto;
+  z-index: 1;
+}
+
+.headstock-body {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  height: 690px;
+  background: url("/head.png") no-repeat center;
+  background-size: 400px auto;
+  z-index: 1;
+}
+
+.notes-grid {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 110%;
+  z-index: 2;
+}

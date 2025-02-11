@@ -1,0 +1,12 @@
+:root {
+  --color-primary: #e2ac49;
+  --color-primary-light: #eecb89;
+  --color-bg-dark: #1a1a1a;
+  --color-bg-darker: #2a2a2a;
+  --color-text-primary: var(--color-primary);
+  --color-text-secondary: #ffffff;
+  --color-shadow: rgba(0, 0, 0, 0.5);
+  --color-glow: rgba(255, 215, 0, 0.3);
+  --line-color: rgba(226, 172, 73, 0.15);
+  --line-glow-color: rgba(226, 172, 73, 0.4);
+}

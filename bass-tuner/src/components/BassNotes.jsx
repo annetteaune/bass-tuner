@@ -1,19 +1,20 @@
 import React, { useEffect, useState } from "react";
 import NoteButton from "./NoteButton";
 import { tunings, createSynth, playNote } from "../utils/audioUtils";
-import "../styles/bass-tuner.css";
-import TunerDropdown from "./TunerDropdrown";
+import "../styles/main.css";
+import AnimatedStrings from "./AnimatedStrings";
 
-const BassNotes = () => {
-  const [selectedTuning, setSelectedTuning] = useState("standard");
+const BassNotes = ({ selectedTuning }) => {
   const [synth] = useState(createSynth());
   const [audioEnabled, setAudioEnabled] = useState(false);
+  const [playingNote, setPlayingNote] = useState(null);
 
-  const handlePlayNote = async (note) => {
+  const handlePlayNote = async (note, stringIndex) => {
+    setPlayingNote({ note, stringIndex });
     await playNote(synth, note);
+    setTimeout(() => setPlayingNote(null), 500);
   };
 
-  // ios
   useEffect(() => {
     const enableAudio = async () => {
       await startAudioContext();
@@ -30,9 +31,7 @@ const BassNotes = () => {
 
   return (
     <div className="container">
-      <h1 className="title">Bass Tuner</h1>
-
-      <TunerDropdown value={selectedTuning} onChange={setSelectedTuning} />
+      <AnimatedStrings notes={notes} playingNote={playingNote} />
 
       <div className="headstock">
         <div className="headstock-body" />
@@ -41,25 +40,33 @@ const BassNotes = () => {
           {/* Left side tuning pegs */}
           <NoteButton
             note={notes[1]}
-            onPlay={handlePlayNote}
-            className="note-button left pos-1"
+            onPlay={() => handlePlayNote(notes[1], 1)}
+            className={`note-button left pos-1 ${
+              playingNote?.note === notes[1] ? "playing" : ""
+            }`}
           />
           <NoteButton
             note={notes[0]}
-            onPlay={handlePlayNote}
-            className="note-button left pos-2"
+            onPlay={() => handlePlayNote(notes[0], 0)}
+            className={`note-button left pos-2 ${
+              playingNote?.note === notes[0] ? "playing" : ""
+            }`}
           />
 
           {/* Right side tuning pegs */}
           <NoteButton
             note={notes[2]}
-            onPlay={handlePlayNote}
-            className="note-button right pos-1"
+            onPlay={() => handlePlayNote(notes[2], 2)}
+            className={`note-button right pos-1 ${
+              playingNote?.note === notes[2] ? "playing" : ""
+            }`}
           />
           <NoteButton
             note={notes[3]}
-            onPlay={handlePlayNote}
-            className="note-button right pos-2"
+            onPlay={() => handlePlayNote(notes[3], 3)}
+            className={`note-button right pos-2 ${
+              playingNote?.note === notes[3] ? "playing" : ""
+            }`}
           />
         </div>
       </div>

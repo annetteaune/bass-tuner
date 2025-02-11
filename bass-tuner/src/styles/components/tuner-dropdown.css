@@ -1,0 +1,29 @@
+.tuning-selector {
+  margin-bottom: 1.5rem;
+  z-index: 2;
+  width: 100%;
+  max-width: 300px;
+}
+
+.tuning-dropdown {
+  width: 100%;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  border: 2px solid var(--color-primary);
+  background-color: var(--color-bg-dark);
+  color: var(--color-text-secondary);
+  outline: none;
+  font-size: 1rem;
+}
+
+.tuning-dropdown:focus {
+  border-color: var(--color-primary-light);
+  box-shadow: 0 0 10px var(--color-glow);
+}
+
+.tuning-label {
+  color: var(--color-text-secondary);
+  margin-bottom: 0.5rem;
+  display: block;
+  font-size: 1rem;
+}
