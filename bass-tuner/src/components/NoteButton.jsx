@@ -1,8 +1,8 @@
 import React from "react";
 
-const NoteButton = ({ note, onPlay }) => {
+const NoteButton = ({ note, onPlay, className }) => {
   return (
-    <button onClick={() => onPlay(note)} className="note-button">
+    <button onClick={() => onPlay(note)} className={className}>
       {note}
     </button>
   );
