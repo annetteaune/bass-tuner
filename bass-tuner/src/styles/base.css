@@ -2,6 +2,7 @@ body {
   background-color: var(--color-bg-dark);
   margin: 0;
   padding: 0;
+  min-width: 300px;
 }
 
 .container {

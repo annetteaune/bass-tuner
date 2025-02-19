@@ -1,29 +1,54 @@
-.tuning-selector {
-  margin-bottom: 1.5rem;
-  z-index: 2;
-  width: 100%;
-  max-width: 300px;
-}
-
-.tuning-dropdown {
-  width: 100%;
-  padding: 0.5rem;
-  border-radius: 0.5rem;
+.tuning-dropdown,
+.tone-dropdown {
+  background-color: transparent;
   border: 2px solid var(--color-primary);
-  background-color: var(--color-bg-dark);
   color: var(--color-text-secondary);
-  outline: none;
-  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: 160px;
+  height: 38px;
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 14 14'%3E%3Cpath fill='%23e2ac49' d='M7 10L0 3h14z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 10px;
 }
 
-.tuning-dropdown:focus {
+.tuning-dropdown:hover,
+.tuning-dropdown:focus,
+.tone-dropdown:hover,
+.tone-dropdown:focus {
   border-color: var(--color-primary-light);
   box-shadow: 0 0 10px var(--color-glow);
+  outline: none;
 }
 
-.tuning-label {
+.tuning-dropdown option,
+.tone-dropdown option {
+  background-color: var(--color-bg-dark);
   color: var(--color-text-secondary);
-  margin-bottom: 0.5rem;
-  display: block;
-  font-size: 1rem;
+  padding: 8px;
+}
+
+.controls-group {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+@media (max-width: 840px) {
+  .tuning-dropdown,
+  .tone-dropdown {
+    width: 100%;
+    height: 58px;
+  }
+
+  .controls-group {
+    flex-direction: column;
+    width: 100%;
+    gap: 0.75rem;
+  }
 }

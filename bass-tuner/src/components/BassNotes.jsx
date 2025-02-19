@@ -1,17 +1,35 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import NoteButton from "./NoteButton";
-import { tunings, createSynth, playNote } from "../utils/audioUtils";
+import { tunings, createSynth, playNote, setVolume } from "../utils/audioUtils";
 import "../styles/main.css";
 import AnimatedStrings from "./AnimatedStrings";
 
-const BassNotes = ({ selectedTuning }) => {
-  const [synth] = useState(createSynth());
+const BassNotes = ({ selectedTuning, volume, currentTone }) => {
+  const synthRef = useRef(null);
   const [audioEnabled, setAudioEnabled] = useState(false);
   const [playingNote, setPlayingNote] = useState(null);
 
+  useEffect(() => {
+    synthRef.current = createSynth(currentTone);
+    setVolume(synthRef.current, volume); //  initial volume
+
+    return () => {
+      if (synthRef.current) {
+        synthRef.current.dispose();
+      }
+    };
+  }, [currentTone]);
+
+  // update volume when it changes
+  useEffect(() => {
+    if (synthRef.current) {
+      setVolume(synthRef.current, volume);
+    }
+  }, [volume]);
+
   const handlePlayNote = async (note, stringIndex) => {
     setPlayingNote({ note, stringIndex });
-    await playNote(synth, note);
+    await playNote(synthRef.current, note);
     setTimeout(() => setPlayingNote(null), 500);
   };
 

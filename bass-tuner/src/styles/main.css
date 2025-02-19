@@ -6,5 +6,6 @@
 @import "./components/headstock.css";
 @import "./components/note-button.css";
 @import "./components/tuner-dropdown.css";
+@import "./components/volume.css";
 @import "./animations.css";
 @import "./breakpoints.css";

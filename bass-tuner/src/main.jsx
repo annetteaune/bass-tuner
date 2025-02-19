@@ -10,6 +10,8 @@ function App() {
   const [selectedTuning, setSelectedTuning] = useState("standard");
   const [showCustomTuning, setShowCustomTuning] = useState(false);
   const [customNotes, setCustomNotes] = useState(["E1", "A1", "D2", "G2"]);
+  const [volume, setVolume] = useState(0.75);
+  const [currentTone, setCurrentTone] = useState("clean");
 
   const handleTuningChange = (tuning) => {
     if (tuning === "custom") {
@@ -33,8 +35,16 @@ function App() {
       <Header
         selectedTuning={selectedTuning}
         setSelectedTuning={handleTuningChange}
+        volume={volume}
+        onVolumeChange={setVolume}
+        currentTone={currentTone}
+        onToneChange={setCurrentTone}
       />
-      <BassNotes selectedTuning={selectedTuning} />
+      <BassNotes
+        selectedTuning={selectedTuning}
+        volume={volume}
+        currentTone={currentTone}
+      />
       {showCustomTuning && (
         <CustomTuning
           customNotes={customNotes}
